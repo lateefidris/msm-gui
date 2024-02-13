@@ -66,4 +66,16 @@ class DirectorsController < ApplicationController
     redirect_to("/directors/#{dir_id}")
   end
 
+  def destroy
+    the_id = params.fetch("an_id")
+
+    matching_records = Director.where({ :id => the_id})
+
+    the_dir = matching_records.at(0)
+
+    the_dir.destroy
+
+    redirect_to("/directors")
+  end
+
 end
